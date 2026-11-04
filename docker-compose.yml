@@ -1,0 +1,17 @@
+services:
+  icecast:
+    build: .
+    restart: unless-stopped
+    environment:
+      ICECAST_SOURCE_PASSWORD: ${ICECAST_SOURCE_PASSWORD}
+      ICECAST_RELAY_PASSWORD: ${ICECAST_RELAY_PASSWORD}
+      ICECAST_ADMIN_USER: ${ICECAST_ADMIN_USER:-admin}
+      ICECAST_ADMIN_PASSWORD: ${ICECAST_ADMIN_PASSWORD}
+      ICECAST_HOSTNAME: ${ICECAST_HOSTNAME:-localhost}
+      ICECAST_ALLOWED_ORIGIN: ${ICECAST_ALLOWED_ORIGIN:-*}
+      ICECAST_MAX_CLIENTS: ${ICECAST_MAX_CLIENTS:-100}
+    expose:
+      - "8000"
+    # Solo para pruebas locales (en Coolify el proxy se encarga):
+    # ports:
+    #   - "8000:8000"
